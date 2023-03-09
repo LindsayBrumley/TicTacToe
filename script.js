@@ -6,9 +6,9 @@
 
 let gameState = {
   board: [
-    [null, null, null],
-    [null, null, null],
-    [null, null, null],
+    ["0,1", "0,2", "0,3"],
+    ["1,1", "1,2", "1,3"],
+    ["2,1", "2,2", "2,3"],
   ],
   // Maybe a current Player?
   // A game status?? 'isPlaying' or 'over'
@@ -20,6 +20,8 @@ nameButton.addEventListener("click", function (event) {
   event.preventDefault();
   const player1 = document.getElementById("Player1").value;
   document.querySelector("#player1score p").innerHTML = player1;
+  const player2 = document.getElementById("Player2").value;
+  document.querySelector("#player2score p").innerHTML = player2;
 });
 
 board.addEventListener("click", function (event) {
