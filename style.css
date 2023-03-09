@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #e9e5d7;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#header {
+  font-family: Optima, sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  color: #0b0835;
+}
+#setplayers {
+  background-color: #f28a0f;
+  font-family: Optima, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: #0b0835;
+}
+form {
+  margin: 10px;
+  padding: 10px;
+  font-family: Optima, sans-serif;
+  font-size: 20px;
+  color: #0b0835;
+}
+.cell {
+  width: 10rem;
+  height: 10rem;
+  border: 2px solid black;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 10rem);
+  grid-template-rows: repeat(3, 10rem);
+}
