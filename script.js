@@ -1,4 +1,3 @@
-//I want the start of the game to have a grid that is empty,
 //It needs to interact when clicked, but before that I need to assign players.
 //There needs to be a form for entering player names,
 //I need an alert for when someone gets something wrong,
