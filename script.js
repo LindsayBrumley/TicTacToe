@@ -3,33 +3,54 @@
 //I need an alert for when someone gets something wrong,
 // I also want the board to reset after the game is over. Will there be a score keeper somewhere in the game
 
-let gameState = {
+const gameState = {
   board: [
-    ["0,1", "0,2", "0,3"],
-    ["1,1", "1,2", "1,3"],
-    ["2,1", "2,2", "2,3"],
+    [null, null, null],
+    [null, null, null],
+    [null, null, null],
   ],
-  // Maybe a current Player?
-  // A game status?? 'isPlaying' or 'over'
-  // Any other data your game logic depends on?
-};
+  currentPlayer: "x",
+ };
 
-const nameButton = document.getElementById("setplayers");
-nameButton.addEventListener("click", function (event) {
-  event.preventDefault();
-  const player1 = document.getElementById("Player1").value;
-  document.querySelector("#player1score p").innerHTML = player1;
-  const player2 = document.getElementById("Player2").value;
-  document.querySelector("#player2score p").innerHTML = player2;
-});
+ for (let i = 0; i < 3; i++) {
+  for (let j = 0; j < 3; j++) {
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
+    cell.id = `${i}-${j}`;
+    board.append(cell);
+  }
+ }
+ 
+// //const nameButton = document.getElementById("setplayers");
+// nameButton.addEventListener("click", function (event) {
+//   event.preventDefault();
+//   const player1 = document.getElementById("Player1").value;
+//   document.querySelector("#player1score p").innerHTML = player1;
+//   const player2 = document.getElementById("Player2").value;
+//   document.querySelector("#player2score p").innerHTML = player2;
+// });
 
-board.addEventListener("click", function (event) {
+board.addEventListener("click", function (e)  => {
+  const row = e.target.id[0];
+  const col = e.target.id[2];
+
+  gameState.board[row][col] =gameState.currentPlayer;
+
+  renderBoard();
+  switchPlayers();
+});  
   // Figure out how to get the coordinates off event object (e.target.value)
   // Use those coordinates to reference indexes in our gameState.board
   // Set the position in our board to the current player
-});
+
 
 function renderGame() {
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      const cell = document.getElementById(`${i}-${j}`);
+      cell.innerText = gameState.board[i][j];
+    }
+  } 
   // Call this function after you've changed your state values
   // Make references to DOM elements, and set the innerText,
   // or innerHTML to reflect our gameState.board
