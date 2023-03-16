@@ -140,13 +140,7 @@ form {
 .score {
   grid-area: 2 / 6 / 5 / 8;
 }
-.image {
-  display: fle;
-  justify-content: right;
-  align-items: end;
-  height: 200px;
-  width: 275px;
-}
+
 footer {
   grid-area: 5 / 1 / 6 / 8;
 }

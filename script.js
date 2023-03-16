@@ -27,6 +27,8 @@ nameForm.addEventListener("submit", function (event) {
   const player2 = event.target[1].value;
   document.querySelector("#player2name").innerText = player2;
   console.log({ player1, player2 });
+  event.target[0].value = "";
+  event.target[1].value = "";
 });
 
 board.addEventListener("click", (e) => {
@@ -36,7 +38,8 @@ board.addEventListener("click", (e) => {
   gameState.board[row][col] = gameState.currentPlayer;
 
   renderBoard();
-  switchPlayers();
+  checkWin();
+  switchPlayer();
 });
 
 function renderBoard() {
@@ -48,7 +51,6 @@ function renderBoard() {
     }
   }
 }
-
 function switchPlayer() {
   if (gameState.currentPlayer === "x") {
     gameState.currentPlayer = "o";
@@ -62,4 +64,33 @@ function checkWin() {
   // checkRow()
   // checkColumn()
   // checkDiagonals()
+}
+
+function checkRow() {
+  const winRows = gameState.board.filter((row) => {
+    const filteredRow = row.filter((cell) => cell == gameState.currentPlayer);
+    return row.length == filteredRow.length;
+  });
+  return winRows.length > 0;
+}
+
+function checkColumn() {
+  for (let i = 0; i < 3; i++) {
+    let thisColumn = [];
+    gameState.board.forEach((row) => {
+      thisColumn.push(row[i]);
+    });
+    let filteredColumn = thisColumn.filter(
+      (cell) => cell == gameState.currentPlayer
+    );
+    return filteredColumn.length == thisColumn.length;
+  }
+  return false;
+}
+
+function checkDiagonal() {
+  let diagonalOne = [];
+  for (let i = 0; i < 3; i++) {
+    diagonalOne.push(gameState.board[i][i]);
+  }
 }
