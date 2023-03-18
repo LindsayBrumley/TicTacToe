@@ -26,7 +26,6 @@ nameForm.addEventListener("submit", function (event) {
   document.querySelector("#player1name").innerText = player1;
   const player2 = event.target[1].value;
   document.querySelector("#player2name").innerText = player2;
-  console.log({ player1, player2 });
   event.target[0].value = "";
   event.target[1].value = "";
 });
@@ -60,10 +59,9 @@ function switchPlayer() {
 }
 
 function checkWin() {
-  // Maybe this calls other helper functions?
-  // checkRow()
-  // checkColumn()
-  // checkDiagonals()
+  checkDiagonals();
+  checkRow();
+  checkColumn();
 }
 
 function checkRow() {
@@ -74,23 +72,61 @@ function checkRow() {
   return winRows.length > 0;
 }
 
-function checkColumn() {
-  for (let i = 0; i < 3; i++) {
-    let thisColumn = [];
-    gameState.board.forEach((row) => {
-      thisColumn.push(row[i]);
-    });
-    let filteredColumn = thisColumn.filter(
-      (cell) => cell == gameState.currentPlayer
-    );
-    return filteredColumn.length == thisColumn.length;
+function checkRow() {
+  for (let i = 0; i < gameState.board.length; i++) {
+    if (
+      gameState.board[i][0] === "x" &&
+      gameState.board[i][1] === "x" &&
+      gameState.board[i][2] === "x"
+    ) {
+      console.log("X has won!");
+    }
+    if (
+      gameState.board[i][0] === "o" &&
+      gameState.board[i][1] === "o" &&
+      gameState.board[i][2] === "o"
+    ) {
+      console.log("O has won!");
+    }
   }
-  return false;
 }
 
-function checkDiagonal() {
-  let diagonalOne = [];
-  for (let i = 0; i < 3; i++) {
-    diagonalOne.push(gameState.board[i][i]);
+function checkColumn() {
+  const board = gameState.board;
+  for (let i = 0; i < board[0].length; i++) {
+    let thisColumn = [];
+    thisColumn.push(board[0][i]);
+    thisColumn.push(board[1][i]);
+    thisColumn.push(board[2][i]);
+    if (
+      thisColumn[0] === "x" &&
+      thisColumn[1] === "x" &&
+      thisColumn[2] === "x"
+    ) {
+      console.log(`X is the winner!`);
+    }
+    if (
+      thisColumn[0] === "o" &&
+      thisColumn[1] === "o" &&
+      thisColumn[2] === "o"
+    ) {
+      console.log(`O is the winner!`);
+    }
+  }
+}
+
+function checkDiagonals() {
+  const board = gameState.board;
+  if (board[0][0] === "x" && board[1][1] === "x" && board[2][2] === "x") {
+    console.log("x is the winner (diagnal)");
+  }
+  if (board[2][0] === "x" && board[1][1] === "x" && board[0][2] === "x") {
+    console.log("x is the winner (diagnal)");
+  }
+  if (board[0][0] === "o" && board[1][1] === "o" && board[2][2] === "o") {
+    console.log("o is the winner (diagnal)");
+  }
+  if (board[2][0] === "o" && board[1][1] === "o" && board[0][2] === "o") {
+    console.log("o is the winner (diagnal)");
   }
 }
