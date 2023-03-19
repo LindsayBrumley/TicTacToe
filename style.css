@@ -32,7 +32,7 @@ body {
   font-weight: bold;
   color: #fe5f55;
 }
-button {
+#player-set-button {
   grid-area: 2 / 2 / 5 / 5;
   height: 40px;
   background-color: #fe5f55;
@@ -40,6 +40,7 @@ button {
   font-size: 22px;
   font-weight: bold;
   color: #56494e;
+  border-radius: 6px;
 }
 form {
   grid-area: 2 / 1 / 5 / 3;
@@ -137,8 +138,22 @@ form {
   padding: 10px;
 }
 
-.score {
+#right-side {
   grid-area: 2 / 6 / 5 / 8;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#refresh-game {
+  height: 50px;
+  width: 400px;
+  background-color: #fe5f55;
+  font-family: "Fredoka One", cursive;
+  font-size: 22px;
+  font-weight: bold;
+  color: #56494e;
+  border-radius: 6px;
 }
 
 footer {

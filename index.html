@@ -27,7 +27,7 @@
       <input type="text" id="Player1" name="Player1" />
       <label for="Player2">Player 2:</label>
       <input type="text" id="Player2" name="Player2" />
-      <button type="submit">Set Players</button>
+      <button type="submit" id="player-set-button">Set Players</button>
       <div id="playero">
         Team O:
         <p id="player1name"></p>
@@ -40,7 +40,11 @@
       </div>
     </form>
     <div class="board"></div>
-    <div class="score"></div>
+    <div id="right-side">
+      <button type="Submit" id="refresh-game" onClick="refreshPage()">
+        Refresh Game
+      </button>
+    </div>
     <footer></footer>
   </body>
 </html>

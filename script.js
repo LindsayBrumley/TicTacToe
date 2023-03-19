@@ -59,74 +59,61 @@ function switchPlayer() {
 }
 
 function checkWin() {
-  checkDiagonals();
-  checkRow();
-  checkColumn();
-}
-
-function checkRow() {
-  const winRows = gameState.board.filter((row) => {
-    const filteredRow = row.filter((cell) => cell == gameState.currentPlayer);
-    return row.length == filteredRow.length;
-  });
-  return winRows.length > 0;
+  if (checkDiagonals() || checkRow() || checkColumn()) {
+    alert(`${gameState.currentPlayer} wins!`);
+  }
 }
 
 function checkRow() {
   for (let i = 0; i < gameState.board.length; i++) {
     if (
-      gameState.board[i][0] === "x" &&
-      gameState.board[i][1] === "x" &&
-      gameState.board[i][2] === "x"
+      gameState.board[i][0] === gameState.currentPlayer &&
+      gameState.board[i][1] === gameState.currentPlayer &&
+      gameState.board[i][2] === gameState.currentPlayer
     ) {
-      console.log("X has won!");
-    }
-    if (
-      gameState.board[i][0] === "o" &&
-      gameState.board[i][1] === "o" &&
-      gameState.board[i][2] === "o"
-    ) {
-      console.log("O has won!");
+      return true;
     }
   }
+  return false;
 }
 
 function checkColumn() {
-  const board = gameState.board;
-  for (let i = 0; i < board[0].length; i++) {
-    let thisColumn = [];
-    thisColumn.push(board[0][i]);
-    thisColumn.push(board[1][i]);
-    thisColumn.push(board[2][i]);
+  for (let i = 0; i < gameState.board[0].length; i++) {
     if (
-      thisColumn[0] === "x" &&
-      thisColumn[1] === "x" &&
-      thisColumn[2] === "x"
+      gameState.board[0][i] === gameState.currentPlayer &&
+      gameState.board[1][i] === gameState.currentPlayer &&
+      gameState.board[2][i] === gameState.currentPlayer
     ) {
-      console.log(`X is the winner!`);
-    }
-    if (
-      thisColumn[0] === "o" &&
-      thisColumn[1] === "o" &&
-      thisColumn[2] === "o"
-    ) {
-      console.log(`O is the winner!`);
+      return true;
     }
   }
+  return false;
 }
 
 function checkDiagonals() {
-  const board = gameState.board;
-  if (board[0][0] === "x" && board[1][1] === "x" && board[2][2] === "x") {
-    console.log("x is the winner (diagnal)");
+  if (
+    gameState.board[0][0] === gameState.currentPlayer &&
+    gameState.board[1][1] === gameState.currentPlayer &&
+    gameState.board[2][2] === gameState.currentPlayer
+  ) {
+    return true;
   }
-  if (board[2][0] === "x" && board[1][1] === "x" && board[0][2] === "x") {
-    console.log("x is the winner (diagnal)");
+
+  if (
+    gameState.board[2][0] === gameState.currentPlayer &&
+    gameState.board[1][1] === gameState.currentPlayer &&
+    gameState.board[0][2] === gameState.currentPlayer
+  ) {
+    return true;
   }
-  if (board[0][0] === "o" && board[1][1] === "o" && board[2][2] === "o") {
-    console.log("o is the winner (diagnal)");
-  }
-  if (board[2][0] === "o" && board[1][1] === "o" && board[0][2] === "o") {
-    console.log("o is the winner (diagnal)");
-  }
+
+  return false;
 }
+
+function refreshPage() {
+  document.location.reload();
+}
+
+// function computerPlayer()
+// let
+//  if (gameState.board[row][col])
