@@ -46,7 +46,6 @@ function renderBoard() {
     for (let j = 0; j < 3; j++) {
       const cell = document.getElementById(`${i}-${j}`);
       cell.innerText = gameState.board[i][j];
-      console.log(gameState.board);
     }
   }
 }
@@ -55,6 +54,7 @@ function switchPlayer() {
     gameState.currentPlayer = "o";
   } else {
     gameState.currentPlayer = "x";
+    computerPlayer();
   }
 }
 
@@ -114,6 +114,25 @@ function refreshPage() {
   document.location.reload();
 }
 
-// function computerPlayer()
-// let
-//  if (gameState.board[row][col])
+const computerBtn = document.getElementById("computer-btn");
+
+computerBtn.addEventListener("click", () => {
+  computerPlayer();
+});
+
+function computerPlayer() {
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (gameState.board[i][j] === null) {
+        gameState.board[i][j] = gameState.currentPlayer;
+        setTimeout(() => {
+          renderBoard();
+          checkWin();
+          switchPlayer();
+        }, 1000);
+
+        return;
+      }
+    }
+  }
+}
